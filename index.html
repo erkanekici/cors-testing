@@ -21,13 +21,21 @@
     <b>CSP TESTING:</b>
   </p>
   
+  <label for="urlCSP" style="min-width:100px;display:inline-block;">URL:</label>
+  <input type="text" id="urlCSP" name="urlCSP" size="100">
+  </br>
+  </br>
+  <button onclick="checkCSP()">Check CSP</button>
+  </br>
+  </br>
   <iframe 
           id="iframe" 
-          src="https://banking.bo.test.platform.integrated.finance" 
+          src="" 
           width="100%" 
           height="500" 
           allowfullscreen 
-          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"> 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          style="visibility:hidden;"> 
   </iframe> 
   
   </br>
@@ -36,8 +44,8 @@
     <b>CORS TESTING:</b>
   </p>
   
-  <label for="url" style="min-width:100px;display:inline-block;">URL:</label>
-  <input type="text" id="url" name="url" size="100">
+  <label for="urlCORS" style="min-width:100px;display:inline-block;">URL:</label>
+  <input type="text" id="urlCORS" name="urlCORS" size="100">
   </br>
   <label for="method" style="min-width:100px;display:inline-block;">METHOD:</label>  
   <input type="radio" name="method" value="GET" checked> GET
@@ -57,12 +65,12 @@
     
     function checkCORS() {
       
-      var url = document.getElementById("url").value
+      var url = document.getElementById("urlCORS").value
       var method = document.querySelector('input[name="method"]:checked').value;
       var request = document.getElementById("request").value           
       
       if(url === ""){
-        alert("Url is empty")
+        alert("CORS Url is empty")
       } else {
         var xhr = new XMLHttpRequest();
         xhr.open(method,url,true);
@@ -85,6 +93,23 @@
       }
      
     }
+    
+    function checkCSP() {
+      
+      var url = document.getElementById("urlCSP").value
+      var iframe = document.getElementById("iframe");  
+      
+      if(url === ""){
+        alert("CSP Url is empty")
+        iframe.style.visibility="hidden";
+      } else {      
+        iframe.src = url;
+        iframe.style.visibility="visible";
+      }
+      
+    }
+    
+    
     
   </script> 
 
