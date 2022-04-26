@@ -55,31 +55,27 @@
       
       var url = document.getElementById("url").value
       var method = document.querySelector('input[name="method"]:checked').value;
-      var request = document.getElementById("request").value
-      
-      console.log("url: " + url)  
-      console.log("method: " + method)
-      console.log("request: " + request)      
+      var request = document.getElementById("request").value           
       
       if(url === ""){
         alert("Url is empty")
-      }
+      } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method,url,true);
+        xhr.setRequestHeader("Content-Type", "application/json");
       
-      var xhr = new XMLHttpRequest();
-      xhr.open(method,url,true);
-      xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function() {
+          console.log("LOAD")
+        };
+        xhr.onerror = function() {
+          console.log("ERROR")
+        };
       
-      xhr.onload = function() {
-        console.log("LOAD")
-      };
-      xhr.onerror = function() {
-        console.log("ERROR")
-      };
-      
-      if(method === "GET"){
-        xhr.send()
-      }else{
-        xhr.send(JSON.stringify(request))
+        if(method === "GET"){
+          xhr.send()
+        }else{
+          xhr.send(JSON.stringify(request))
+        }
       }
      
     }
