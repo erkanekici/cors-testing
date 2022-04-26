@@ -57,7 +57,11 @@
       var method = document.querySelector('input[name="method"]:checked').value;
       var request = document.getElementById("request").value
       
-      if(url === undefined){
+      console.log("url: " + url)  
+      console.log("method: " + method)
+      console.log("request: " + request)      
+      
+      if(url === undefined || url === null){
         alert("Url")
       }
       
