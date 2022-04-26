@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />  
+
+  <title>CORS_&_CSP_TESTING</title>
+</head>
+
+<body>
+
+  <noscript>Bu uygulamayı çalıştırmak için JavaScript'i etkinleştirmeniz gerekir.</noscript>
+  
+  <p style="text-align:center;font-size:24px;">
+    <b>CORS & CSP TESTING</b>
+  </p>  
+  
+  <p>
+    <b>CSP TESTING:</b>
+  </p>
+  
+  <label for="urlCSP" style="min-width:100px;display:inline-block;">URL:</label>
+  <input type="text" id="urlCSP" name="urlCSP" size="100">
+  </br>
+  </br>
+  <button onclick="checkCSP()">Check CSP</button>
+  </br>
+  </br>
+  <iframe 
+          id="iframe" 
+          src="" 
+          width="100%" 
+          height="500" 
+          allowfullscreen 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"> 
+  </iframe> 
+  
+  </br>
+  
+  <p>
+    <b>CORS TESTING:</b>
+  </p>
+  
+  <label for="urlCORS" style="min-width:100px;display:inline-block;">URL:</label>
+  <input type="text" id="urlCORS" name="urlCORS" size="100">
+  </br>
+  <label for="method" style="min-width:100px;display:inline-block;">METHOD:</label>  
+  <input type="radio" name="method" value="GET" checked> GET
+  <input type="radio" name="method" value="POST"> POST
+  </br>
+  <label for="request" style="min-width:100px;display:inline-block;" >JSON REQUEST:</label></br>
+  <textarea id="request" name="request" rows="5" cols="80"></textarea>
+  </br>
+  </br>
+  <button onclick="checkCORS()">Check CORS</button>
+  </br>
+  </br>
+  <label>RESULT:</label>
+  <label id="result"></label>
+  
+  <script type ="text/javascript">  
+    
+    function checkCORS() {
+      
+      var url = document.getElementById("urlCORS").value
+      var method = document.querySelector('input[name="method"]:checked').value;
+      var request = document.getElementById("request").value           
+      
+      if(url === ""){
+        alert("CORS Url is empty")
+      } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method,url,true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+      
+        xhr.onload = function() {
+          console.log("SUCCESS")
+          document.getElementById('result').innerHTML = ' SUCCESS';
+        };
+        xhr.onerror = function() {
+          console.log("ERROR")
+          document.getElementById('result').innerHTML = ' ERROR';
+        };
+      
+        if(method === "GET"){
+          xhr.send()
+        }else{
+          xhr.send(JSON.stringify(request))
+        }
+      }
+     
+    }
+    
+    function checkCSP() {
+      
+      var url = document.getElementById("urlCSP").value
+      var iframe = document.getElementById("iframe");  
+      
+      if(url === ""){
+        alert("CSP Url is empty")
+        //iframe.style.visibility="hidden";
+      } else {      
+        iframe.src = url;
+        //iframe.style.visibility="visible";
+      }
+      
+    }    
+     
+  </script> 
+
+</body>
+
+</html>
