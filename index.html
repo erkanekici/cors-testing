@@ -34,8 +34,7 @@
           width="100%" 
           height="500" 
           allowfullscreen 
-          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-          style="visibility:hidden;"> 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"> 
   </iframe> 
   
   </br>
@@ -61,8 +60,7 @@
   <label>RESULT:</label>
   <label id="result"></label>
   
-  <script type ="text/javascript">
-  //window.onload = function() {
+  <script type ="text/javascript">  
     
     function checkCORS() {
       
@@ -102,15 +100,14 @@
       
       if(url === ""){
         alert("CSP Url is empty")
-        iframe.style.visibility="hidden";
+        //iframe.style.visibility="hidden";
       } else {      
         iframe.src = url;
-        iframe.style.visibility="visible";
+        //iframe.style.visibility="visible";
       }
       
-    }
-    
-  //}    
+    }    
+     
   </script> 
 
 </body>
