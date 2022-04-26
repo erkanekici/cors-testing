@@ -48,6 +48,10 @@
   </br>
   </br>
   <button onclick="checkCORS()">Check CORS</button>
+  </br>
+  </br>
+  <label>RESULT:</label>
+  <label id="lbltipAddedComment"></label>
   
   <script>
     
@@ -65,10 +69,12 @@
         xhr.setRequestHeader("Content-Type", "application/json");
       
         xhr.onload = function() {
-          console.log("LOAD")
+          console.log("SUCCESS")
+          document.getElementById('result').innerHTML = ' SUCCESS';
         };
         xhr.onerror = function() {
           console.log("ERROR")
+          document.getElementById('result').innerHTML = ' ERROR';
         };
       
         if(method === "GET"){
