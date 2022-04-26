@@ -15,12 +15,12 @@
   
   <p style="text-align:center;font-size:24px;">
     <b>CORS & CSP TESTING</b>
-  </p>
-  
+  </p>  
   
   <p>
     <b>CSP TESTING:</b>
   </p>
+  
   <iframe 
           id="iframe" 
           src="https://banking.bo.test.platform.integrated.finance" 
@@ -37,78 +37,48 @@
   </p>
   
   <label for="url" style="min-width:100px;display:inline-block;">URL:</label>
-  <input type="text" id="url" name="url" required size="100">
+  <input type="text" id="url" name="url" size="100">
   </br>
   <label for="method" style="min-width:100px;display:inline-block;">METHOD:</label>  
   <input type="radio" name="method" value="GET" checked> GET
   <input type="radio" name="method" value="POST"> POST
   </br>
-  <label for="request" style="min-width:100px;display:inline-block;" >REQUEST:</label></br>
-  <textarea id="request" name="request" rows="5" cols="80" required></textarea>
+  <label for="request" style="min-width:100px;display:inline-block;" >JSON REQUEST:</label></br>
+  <textarea id="request" name="request" rows="5" cols="80"></textarea>
   </br>
   </br>
-  <button onclick="test()">TEST</button>
+  <button onclick="checkCORS()">Check CORS</button>
   
   <script>
     
-    var createCORSRequest = function(method, url) {
-      var xhr = new XMLHttpRequest();
-      if ("withCredentials" in xhr) {
-        // Most browsers.
-        xhr.open(method, url, true);
-      } else if (typeof XDomainRequest != "undefined") {
-        // IE8 & IE9
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-      } else {
-        // CORS not supported.
-        xhr = null;
-      }
-      return xhr;
-    };
-
-    var url = 'https://banking.bo.test.platform.integrated.finance/clients'
-    var method = 'GET';
-    var xhr = createCORSRequest(method, url);
-
-    xhr.onload = function() {
-      console.log("LOAD")
-    };
-    xhr.onerror = function() {
-      console.log("ERROR")
-    };
-    //xhr.send();
-    
-    var url2 = 'https://www.mynet.com/'
-    var method2 = 'GET';
-    var xhr2 = createCORSRequest(method2, url2);
-    
-    xhr2.onload = function() {
-      console.log("LOAD-2")
-    };
-    xhr2.onerror = function() {
-      console.log("ERROR-2")
-    };
-    //xhr2.send();
-    
-    function test() {
+    function checkCORS() {
+      
       var url = document.getElementById("url").value
       var method = document.querySelector('input[name="method"]:checked').value;
       var request = document.getElementById("request").value
       
-      console.log("url")
-      console.log(url)
-      console.log("method")
-      console.log(method)
-      console.log("request")
-      console.log(request)
+      if(url === undefined){
+        alert("Url")
+      }
       
-      var sendForm = new XMLHttpRequest();
-      sendForm.open(method,url,true);
-      sendForm.setRequestHeader("Content-Type", "application/json");
-      //sendForm.send(JSON.stringify(request))
+      var xhr = new XMLHttpRequest();
+      xhr.open(method,url,true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      
+      xhr.onload = function() {
+        console.log("LOAD")
+      };
+      xhr.onerror = function() {
+        console.log("ERROR")
+      };
+      
+      if(method === "GET"){
+        xhr.send()
+      }else{
+        xhr.send(JSON.stringify(request))
+      }
+     
     }
-    
     
   </script> 
 
