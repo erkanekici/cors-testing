@@ -39,11 +39,12 @@
   <label for="url">URL:</label>
   <input type="text" id="url" name="url" required size="100">
   </br>
-  <label for="method">METHOD:</label>
-  <input type="text" id="method" name="method" required>
+  <label for="method">METHOD:</label>  
+  <input type="radio" name="method" value="GET" checked> GET
+  <input type="radio" name="method" value="POST"> POST
   </br>
   <label for="request">REQUEST:</label>
-  <input type="text" id="request" name="request" required>
+  <textarea id="request" name="request" rows="5" cols="100" required></textarea>
   </br>
   <button onclick="test()">TEST</button>
   
@@ -91,7 +92,7 @@
     
     function test() {
       var url = document.getElementById("url").value
-      var method = document.getElementById("method").value
+      var method = document.querySelector('input[name="method"]:checked').value;
       var request = document.getElementById("request").value
       
       var sendForm = new XMLHttpRequest();
