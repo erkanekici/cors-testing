@@ -95,10 +95,17 @@
       var method = document.querySelector('input[name="method"]:checked').value;
       var request = document.getElementById("request").value
       
+      console.log("url")
+      console.log(url)
+      console.log("method")
+      console.log(method)
+      console.log("request")
+      console.log(request)
+      
       var sendForm = new XMLHttpRequest();
       sendForm.open(method,url,true);
       sendForm.setRequestHeader("Content-Type", "application/json");
-      sendForm.send(JSON.stringify(request))
+      //sendForm.send(JSON.stringify(request))
     }
     
     
