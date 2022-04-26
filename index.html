@@ -6,18 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000" />  
 
-  <title>CORS_TESTING</title>
+  <title>CORS_&_CSP_TESTING</title>
 </head>
 
 <body>
 
   <noscript>Bu uygulamayı çalıştırmak için JavaScript'i etkinleştirmeniz gerekir.</noscript>
   
-  <div id="root">
-    <p>
-      CORS TESTING
-    </p>
-  </div>
+  <p style="text-align:center,font-size:24px">
+    <b>CORS & CSP TESTING</b>
+  </p>
   
   <iframe 
           id="iframe" 
@@ -26,7 +24,41 @@
           height="500" 
           allowfullscreen 
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"> 
-  </iframe>  
+  </iframe> 
+  
+  <script>
+    
+    var createCORSRequest = function(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+      // Most browsers.
+      xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+      // IE8 & IE9
+      xhr = new XDomainRequest();
+      xhr.open(method, url);
+    } else {
+      // CORS not supported.
+      xhr = null;
+    }
+      return xhr;
+    };
+
+    var url = 'https://banking.bo.test.platform.integrated.finance/clients';
+    var method = 'GET';
+    var xhr = createCORSRequest(method, url);
+
+    xhr.onload = function() {
+      console.log("LOAD")
+    };
+
+    xhr.onerror = function() {
+      console.log("ERROR")
+    };
+
+    xhr.send();
+    
+  </script> 
 
 </body>
 
