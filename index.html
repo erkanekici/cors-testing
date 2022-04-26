@@ -17,6 +17,10 @@
     <b>CORS & CSP TESTING</b>
   </p>
   
+  
+  <p>
+    <b>CSP TESTING:</b>
+  </p>
   <iframe 
           id="iframe" 
           src="https://banking.bo.test.platform.integrated.finance" 
@@ -26,14 +30,21 @@
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"> 
   </iframe> 
   
+  </br>
+  
+  <p>
+    <b>CORS TESTING:</b>
+  </p>
   
   <label for="url">URL:</label>
   <input type="text" id="url" name="url" required size="100">
+  </br>
   <label for="method">METHOD:</label>
   <input type="text" id="method" name="method" required>
+  </br>
   <label for="request">REQUEST:</label>
   <input type="text" id="request" name="request" required>
-  
+  </br>
   <button onclick="test()">TEST</button>
   
   <script>
