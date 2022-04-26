@@ -29,34 +29,44 @@
   <script>
     
     var createCORSRequest = function(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-      // Most browsers.
-      xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined") {
-      // IE8 & IE9
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-    } else {
-      // CORS not supported.
-      xhr = null;
-    }
+      var xhr = new XMLHttpRequest();
+      if ("withCredentials" in xhr) {
+        // Most browsers.
+        xhr.open(method, url, true);
+      } else if (typeof XDomainRequest != "undefined") {
+        // IE8 & IE9
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+      } else {
+        // CORS not supported.
+        xhr = null;
+      }
       return xhr;
     };
 
-    var url = 'https://banking.bo.test.platform.integrated.finance/clients';
+    var url = 'https://banking.bo.test.platform.integrated.finance/clients'
     var method = 'GET';
     var xhr = createCORSRequest(method, url);
 
     xhr.onload = function() {
       console.log("LOAD")
     };
-
     xhr.onerror = function() {
       console.log("ERROR")
     };
-
     xhr.send();
+    
+    var url2 = 'https://www.mynet.com/'
+    var method2 = 'GET';
+    var xhr2 = createCORSRequest(method2, url2);
+    
+    xhr2.onload = function() {
+      console.log("LOAD-2")
+    };
+    xhr2.onerror = function() {
+      console.log("ERROR-2")
+    };
+    xhr2.send();
     
   </script> 
 
