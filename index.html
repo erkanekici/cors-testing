@@ -36,15 +36,16 @@
     <b>CORS TESTING:</b>
   </p>
   
-  <label for="url">URL:</label>
+  <label for="url" style="min-width:100px;display:inline-block;">URL:</label>
   <input type="text" id="url" name="url" required size="100">
   </br>
-  <label for="method">METHOD:</label>  
+  <label for="method" style="min-width:100px;display:inline-block;">METHOD:</label>  
   <input type="radio" name="method" value="GET" checked> GET
   <input type="radio" name="method" value="POST"> POST
   </br>
-  <label for="request">REQUEST:</label>
-  <textarea id="request" name="request" rows="5" cols="100" required></textarea>
+  <label for="request" style="min-width:100px;display:inline-block;" >REQUEST:</label></br>
+  <textarea id="request" name="request" rows="5" cols="80" required></textarea>
+  </br>
   </br>
   <button onclick="test()">TEST</button>
   
